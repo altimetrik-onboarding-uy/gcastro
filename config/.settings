@@ -1,0 +1,17 @@
+{
+    "projectName": "Compensations",
+    "username": "gcastro.10@altimetrik.com",
+    "id": "b934f4d0-6809-11e8-9ffb-dbccadd1e7b4",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://na59.salesforce.com",
+    "workspace": "/Users/gcastro/Documents",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "StaticResource"
+    ]
+}
