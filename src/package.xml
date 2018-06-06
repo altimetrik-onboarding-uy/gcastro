@@ -18,7 +18,23 @@
     </types>
     <types>
         <members>*</members>
+        <name>ApprovalProcess</name>
+    </types>
+    <types>
+        <members>standard__AppLauncher</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Compensation__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>*</members>
         <name>StaticResource</name>
     </types>
-    <version>36.0</version>
+    <version>42.0</version>
 </Package>

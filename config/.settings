@@ -12,6 +12,11 @@
         "ApexComponent",
         "ApexPage",
         "ApexTrigger",
+        "ApprovalProcess",
+        "CustomApplication",
+        "CustomObject",
+        "CustomTab",
+        "Dashboard",
         "StaticResource"
     ]
 }
