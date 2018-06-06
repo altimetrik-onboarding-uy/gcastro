@@ -1,33 +1,43 @@
-trigger sendEmail on Compensation__c (after insert, after update) {
+trigger sendEmail on Compensation__c (before insert, before update) {
     
     for(Compensation__c comp: Trigger.new)
     {
         String htmlBody = '';
+        string subject = '';
         Id contactId = (Id)comp.get('Contact__c');
         Contact ct = ([SELECT Email FROM Contact WHERE Id =:contactId limit 1]);
 
         if(comp.get('Location__c') == 'Uruguay' && ct.email != null)
         {
-            if(Trigger.isUpdate && comp.get('Status__c') == 'APPROVED')
+            if(Trigger.isUpdate)
             {
-                htmlBody = '<html>' +
-                                '<head>' +
-                                '</head>' +
-                                '<body bgcolor="#f6f8f1">' +
-                                    '<ul>' +
-                                        '<li>' +
-                                            'Your compensation was approved!<br>' +
-                                        '</li>' +
-                                    '</ul>' +
-                                    '<br>' +
-                                    '<br>' +
-                                    '<br>' +
-                                '</body>' +
-                            '</html>';
+                if(comp.get('Status__c') == 'APPROVED' || comp.get('Status__c') == 'REJECTED')
+                {
+                    subject = 'Compensation Status';
+                    htmlBody = '<html>' +
+                                    '<head>' +
+                                    '</head>' +
+                                    '<body bgcolor="#f6f8f1">' +
+                                        '<ul>' +
+                                            '<li>' +
+                                                'Your compensation was '+ comp.get('Status__c') +'<br>' +
+                                            '</li>' +
+                                        '</ul>' +
+                                        '<br>' +
+                                        '<br>' +
+                                        '<br>' +
+                                    '</body>' +
+                                '</html>';
+                }
+                else if(comp.get('Submitted__c') == True)
+                {
+                    comp.put('Status__c','SUBMITTED');
+                }
             }
             else if(Trigger.isInsert)
             {
-                 htmlBody = '<html>' +
+                subject = 'Compensation added!';
+                htmlBody = '<html>' +
                                 '<head>' +
                                 '</head>' +
                                 '<body bgcolor="#f6f8f1">' +
@@ -57,7 +67,7 @@ trigger sendEmail on Compensation__c (after insert, after update) {
                             '</html>';
             }
 
-            EmailManager.sendMail(ct.email, 'Compensation added!', htmlBody);
+            EmailManager.sendMail(ct.email, subject, htmlBody);
         }
     }
 	
