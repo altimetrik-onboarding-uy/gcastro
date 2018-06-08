@@ -1,11 +1,17 @@
 trigger sendEmail on Compensation__c (before insert) {
     
+    List<Id> contactList = new List<Id>();
+
+     for(Compensation__c c : Trigger.new){
+        contactList.add((Id)c.get('Contact__c'));
+     }
+
+    Contact ct = [SELECT Id, FirstName, LastName, Email FROM Contact WHERE Id IN :contactList];
+
     for(Compensation__c comp: Trigger.new)
     {
         String htmlBody = '';
         string subject = '';
-        Id contactId = (Id)comp.get('Contact__c');
-        Contact ct = ([SELECT Email FROM Contact WHERE Id =:contactId limit 1]);
 
         if(comp.get('Location__c') == 'Uruguay' && ct.email != null)
         {
