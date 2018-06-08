@@ -6,14 +6,15 @@ trigger sendEmail on Compensation__c (before insert) {
         contactList.add((Id)c.get('Contact__c'));
      }
 
-    Contact ct = [SELECT Id, FirstName, LastName, Email FROM Contact WHERE Id IN :contactList];
+     Map<Id, Contact> actualContacts = new Map<Id, Contact>( [SELECT Id, FirstName, LastName, Email FROM Contact WHERE Id IN :contactList]);
 
-    for(Compensation__c comp: Trigger.new)
-    {
+  for (Compensation__c comp : trigger.New) {
+
+        Contact assignedContact = actualContacts.get(comp.Contact__c);
         String htmlBody = '';
         string subject = '';
 
-        if(comp.get('Location__c') == 'Uruguay' && ct.email != null)
+        if(comp.get('Location__c') == 'Uruguay' && assignedContact.email != null)
         {
             subject = 'Compensation added!';
             htmlBody = '<html>' +
@@ -45,7 +46,7 @@ trigger sendEmail on Compensation__c (before insert) {
                         '</body>' +
                     '</html>';
 
-                EmailManager.sendMail(ct.email, subject, htmlBody);
+                EmailManager.sendMail(assignedContact.email, subject, htmlBody);
             }
         }
     }
