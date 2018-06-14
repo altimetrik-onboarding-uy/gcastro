@@ -9,7 +9,6 @@ trigger sendEmail on Compensation__c (before insert) {
      Map<Id, Contact> actualContacts = new Map<Id, Contact>( [SELECT Id, FirstName, LastName, Email FROM Contact WHERE Id IN :contactList]);
 
   for (Compensation__c comp : trigger.New) {
-
         Contact assignedContact = actualContacts.get(comp.Contact__c);
         String htmlBody = '';
         string subject = '';

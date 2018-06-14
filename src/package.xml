@@ -21,6 +21,11 @@
         <name>ApprovalProcess</name>
     </types>
     <types>
+        <members>CompensationsTableRow</members>
+        <members>EmployeeCompensationsTab</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
         <members>standard__AppLauncher</members>
         <name>CustomApplication</name>
     </types>

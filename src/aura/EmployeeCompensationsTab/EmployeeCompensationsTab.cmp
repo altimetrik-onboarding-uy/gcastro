@@ -1,0 +1,39 @@
+<aura:component controller="CompensationController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global">
+	  <aura:attribute name="components"  access="global" type="List" default="{}"/>
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <div class="slds-form-element__control slds-grow">
+      <div class="slds-select_container">
+        <lightning:select aura:id="compensationsFilter" onchange="{!c.doInit}">
+            <option value="">All Compensations</option>
+            <option value="Salary">Salary</option>
+            <option value="Study">Study</option> 
+            <option value="Research">Research</option>
+          </lightning:select>
+      </div>
+      <br/>
+  </div>
+  
+  <table class="slds-table slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+    <thead>
+      <tr class="slds-text-heading--label">
+        <th scope="col"><div class="slds-table" title="Employee's name">Name</div></th>
+        <th scope="col"><div class="slds-table" title=" Employee's date of birth">Date of birth</div></th>
+        <th scope="col"><div class="slds-table" title="Job Category">Job Category</div></th>
+        <th scope="col"><div class="slds-table" title=" Compensation Type">Type</div></th>
+        <th scope="col"><div class="slds-table" title="Amount">Amount</div></th>
+        <th scope="col"><div class="slds-table" title="Location">Location</div></th>
+        <th scope="col"><div class="slds-table" title="Office">Office</div></th>
+        <th scope="col"><div class="slds-table" title="Submitted">Submitted</div></th>
+        <th scope="col"><div class="slds-table" title="Status">Status</div></th>
+        <th scope="col"><div class="slds-table" title="Status"></div></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Use the Apex model and controller to fetch server side data -->
+      <aura:iteration items="{!v.components}" var="item">
+        <c:CompensationsTableRow component="{!item}" />
+      </aura:iteration>
+    </tbody>
+  </table>
+</aura:component>
