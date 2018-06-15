@@ -1,0 +1,24 @@
+<aura:component  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    <aura:attribute access="global" name="component"  type="Compensation__c"/>
+    <tr>
+        <td><div class="slds-table" title="{!v.component.Contact__r.Name}">
+          <a onclick="{!c.edit}">
+              {!v.component.Contact__r.Name}
+          </a>
+          </div></td>
+        <td><div class="slds-table" title="{!v.component.Contact__r.Birthdate}">
+            <ui:outputDate value="{!v.component.Contact__r.Birthdate}" format="MMMM DD,yyyy"/>
+        </div></td>
+        <td><div class="slds-table" title="{!v.component.Job_Category__c}">{!v.component.Job_Category__c}</div></td>
+        <td><div class="slds-table" title="{!v.component.Types__c}">{!v.component.Types__c}</div></td>
+        <td><div class="slds-table" title="{!v.component.Amount__c}">{!v.component.Amount__c}</div></td>
+        <td><div class="slds-table" title="{!v.component.Location__c}">{!v.component.Location__c}</div></td>
+        <td><div class="slds-table" title="{!v.component.Office__c}">{!v.component.Office__c}</div></td>
+        <td><div class="slds-table" title="{!v.component.Submitted__c}">{!v.component.Submitted__c}</div></td>
+        <td><div class="slds-table" title="{!v.component.Status__c}">{!v.component.Status__c}</div></td>
+        <td><div class="slds-table"><lightning:button label="View" 
+            variant="brand"
+            class="slds-button"
+            onclick="{!c.viewCompensation}"/></div></td>
+    </tr>
+</aura:component>

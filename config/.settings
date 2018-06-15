@@ -13,6 +13,7 @@
         "ApexPage",
         "ApexTrigger",
         "ApprovalProcess",
+        "AuraDefinitionBundle",
         "CustomApplication",
         "CustomObject",
         "CustomTab",

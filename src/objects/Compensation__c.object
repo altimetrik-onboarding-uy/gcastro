@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -56,9 +56,9 @@
         <fullName>Amount__c</fullName>
         <externalId>false</externalId>
         <label>Amount</label>
-        <precision>5</precision>
+        <precision>7</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -68,8 +68,8 @@
         <externalId>false</externalId>
         <label>Contact</label>
         <referenceTo>Contact</referenceTo>
-        <relationshipLabel>Compensations</relationshipLabel>
-        <relationshipName>Compensations</relationshipName>
+        <relationshipLabel>Contacts</relationshipLabel>
+        <relationshipName>Contacts</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>true</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
@@ -90,7 +90,6 @@
     </fields>
     <fields>
         <fullName>End_date__c</fullName>
-        <defaultValue>TODAY()</defaultValue>
         <externalId>false</externalId>
         <label>End date</label>
         <required>false</required>
@@ -235,7 +234,6 @@
     </fields>
     <fields>
         <fullName>Start_date__c</fullName>
-        <defaultValue>TODAY()</defaultValue>
         <externalId>false</externalId>
         <label>Start date</label>
         <required>false</required>
@@ -252,7 +250,6 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -280,7 +277,7 @@
     <fields>
         <fullName>Tax__c</fullName>
         <externalId>false</externalId>
-        <formula>(Amount__c  * 22) / 100</formula>
+        <formula>(Amount__c * 22) / 100</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Tax</label>
         <precision>18</precision>
@@ -323,7 +320,12 @@
     <gender>Feminine</gender>
     <label>Compensation</label>
     <listViews>
-        <fullName>Custom_List</fullName>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Custom_View</fullName>
         <columns>NAME</columns>
         <columns>Types__c</columns>
         <columns>Contact__c</columns>
@@ -332,7 +334,7 @@
         <columns>Submitted__c</columns>
         <columns>Status__c</columns>
         <filterScope>Mine</filterScope>
-        <label>Custom List</label>
+        <label>Custom View</label>
     </listViews>
     <nameField>
         <label>Compensation Name</label>
@@ -345,12 +347,10 @@
         <lookupDialogsAdditionalFields>Job_Category__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Location__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Contact__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Types__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Job_Category__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Location__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields xsi:nil="true"/>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
