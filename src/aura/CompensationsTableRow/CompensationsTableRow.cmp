@@ -1,4 +1,4 @@
-<aura:component  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global">
+<aura:component  controller="CompensationController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global">
     <aura:attribute access="global" name="component"  type="Compensation__c"/>
     <tr>
         <td><div class="slds-table" title="{!v.component.Contact__r.Name}">
@@ -11,12 +11,14 @@
         </div></td>
         <td><div class="slds-table" title="{!v.component.Job_Category__c}">{!v.component.Job_Category__c}</div></td>
         <td><div class="slds-table" title="{!v.component.Types__c}">{!v.component.Types__c}</div></td>
-        <td><div class="slds-table" title="{!v.component.Amount__c}">{!v.component.Amount__c}</div></td>
+        <td><div class="slds-table" title="{!v.component.unknown_custom_field}">{!v.component.unknown_custom_field}</div></td>
         <td><div class="slds-table" title="{!v.component.Location__c}">{!v.component.Location__c}</div></td>
         <td><div class="slds-table" title="{!v.component.Office__c}">{!v.component.Office__c}</div></td>
         <td><div class="slds-table" title="{!v.component.Submitted__c}">{!v.component.Submitted__c}</div></td>
         <td><div class="slds-table" title="{!v.component.Status__c}">{!v.component.Status__c}</div></td>
-        <td><div class="slds-table"><lightning:button label="View" 
+        <td><div class="slds-align_absolute-center"><lightning:input type="checkbox" label="" 
+            value="{!v.component}"  disabled="{!v.component.Submitted__c}" checked="{!v.component.Submitted__c}" onchange="{!c.onChangeCheckbox}"/></div></td>
+        <td><div><lightning:button label="View" 
             variant="brand"
             class="slds-button"
             onclick="{!c.viewCompensation}"/></div></td>

@@ -19,7 +19,7 @@ public class EmailManager {
     
     // Helper method
     private static Boolean inspectResults(Messaging.SendEmailResult[] results) {
-        Boolean sendResult = true;
+        Boolean sendResult = false;
         
         // sendEmail returns an array of result objects.
         // Iterate through the list to inspect results. 
@@ -27,11 +27,8 @@ public class EmailManager {
         // so we should have only one result.
         for (Messaging.SendEmailResult res : results) {
             if (res.isSuccess()) {
+                sendResult = true;
                 System.debug('Email sent successfully');
-            }
-            else {
-                sendResult = false;
-                System.debug('The following errors occurred: ' + res.getErrors());                 
             }
         }
         

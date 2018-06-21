@@ -1,9 +1,13 @@
 ({
 	getComponentList: function(component) {
 		var action = component.get('c.getCompensations');
-		var select = component.find("compensationsFilter").get("v.value");
-		if(select == undefined){select = '';}
-		action.setParams({ filter : select });
+		var filterType = component.find("typeFilter").get("v.value");
+		var filterSubmitted = component.find("submittedFilter").get("v.value");
+
+		if(filterType == undefined){filterType = '';}
+		if(filterSubmitted == undefined){filterSubmitted = '';}
+
+		action.setParams({ type : filterType,  submitted : filterSubmitted});
 
 	  // Set up the callback
 	  var self = this;
@@ -35,5 +39,40 @@
 		});
 
 	  $A.enqueueAction(action);
-	}
+	},
+	convertArrayOfObjectsToCSV : function(component, objectRecords){
+		var csvStringResult, counter, keys, columnDivider, lineDivider;
+	 
+		// check if "objectRecords" parameter is null, then return from function
+		if (objectRecords == null || !objectRecords.length) {
+				return null;
+		 }
+		// store ,[comma] in columnDivider variabel for sparate CSV values and 
+		// for start next line use '\n' [new line] in lineDivider varaible  
+		columnDivider = ',';
+		lineDivider =  '\n';
+		csvStringResult = '';
+
+		csvStringResult += 'NAME,'+'BIRTHDATE,'+
+		'JOB CATEGORY,'+'TYPE,'+'AMOUNT,'+
+		'LOCATION,'+'OFFICE,'+'SUBMITTED,'+'STATUS';
+		csvStringResult += lineDivider;
+
+		for(var i=0; i < objectRecords.length; i++){   
+					csvStringResult += '"'+ objectRecords[i]['Contact__r']['Name'] +'",' + 
+					'"'+ objectRecords[i]['Contact__r']['Birthdate'] +'",' + 
+					'"'+ objectRecords[i]['Job_Category__c'] +'",' + 
+					'"'+ objectRecords[i]['Types__c'] +'",' + 
+					'"'+ objectRecords[i]['Amount__c'] +'",' + 
+					'"'+ objectRecords[i]['Location__c']+'",' + 
+					'"'+ objectRecords[i]['Office__c'] +'",' + 
+					'"'+ objectRecords[i]['Submitted__c']+'",' + 
+					'"'+ objectRecords[i]['Status__c'] +'"';
+
+				 	csvStringResult += lineDivider;
+			}// outer main for loop close 
+	 
+	 // return the CSV formate String 
+		return csvStringResult;        
+}
 	})
